@@ -25,8 +25,15 @@ public class Main {
                       System.out.println("Received: " + line);
                   }
 
-                  // Send HTTP 200 OK response
-                  out.write("HTTP/1.1 200 OK\r\n\r\n");
+                  // Response body
+                  String responseBody = "Hello from the server!";
+
+                  // HTTP response with headers and body
+                  out.write("HTTP/1.1 200 OK\r\n");
+                  out.write("Content-Length: " + responseBody.length() + "\r\n");
+                  out.write("Content-Type: text/plain\r\n");
+                  out.write("\r\n"); // End of headers
+                  out.write(responseBody); // Body
                   out.flush();
 
                   // Close connection
